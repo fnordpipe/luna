@@ -1,7 +1,4 @@
 -- api
-api = require("api.init")
-
--- laprassl
+api = require('api.init')
 api:init()
-
 return api.app
