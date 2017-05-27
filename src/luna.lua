@@ -4,11 +4,11 @@ local json_params = require('lapis.application').json_params
 local lfs = require('lfs')
 local config = require('config')
 
-local api = {
+local luna = {
   app = lapis.Application()
 }
 
-function api.init(self)
+function luna.init(self)
   package.path = package.path .. ';' .. config.endpoints .. '/?.lua'
   for version in lfs.dir(config.endpoints) do
     moduleDir = config.endpoints .. '/' .. version
@@ -19,14 +19,14 @@ function api.init(self)
           blueprint = require(version .. '.' .. string.gsub(endpoint, '.lua', ''))
 
           for _, ctx in pairs(blueprint.get or {}) do
-            api.app:get(
+            luna.app:get(
               '/' .. version .. '/' .. string.gsub(endpoint, '.lua', '') .. ctx.context,
               json_params(function(self) return ctx:call(self.params) end)
             )
           end
 
           for _, ctx in pairs(blueprint.post or {}) do
-            api.app:post(
+            luna.app:post(
               '/' .. version .. '/' .. string.gsub(endpoint, '.lua', '') .. ctx.context,
               json_params(function(self) return ctx:call(self.params) end)
             )
@@ -37,4 +37,6 @@ function api.init(self)
   end
 end
 
-return api
+luna:init()
+
+return luna.app
