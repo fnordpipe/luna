@@ -31,6 +31,13 @@ function luna.init(self)
               json_params(function(self) return ctx:call(self.params) end)
             )
           end
+
+          for _, ctx in pairs(blueprint.delete or {}) do
+            luna.app:delete(
+              '/' .. version .. '/' .. string.gsub(endpoint, '.lua', '') .. ctx.context,
+              json_params(function(self) return ctx:call(self.params) end)
+            )
+          end
         end
       end
     end
