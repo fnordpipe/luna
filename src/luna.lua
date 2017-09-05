@@ -2,16 +2,17 @@
 local lapis = require('lapis')
 local json_params = require('lapis.application').json_params
 local lfs = require('lfs')
-local config = require('config')
 
 local luna = {
-  app = lapis.Application()
+  app = lapis.Application(),
+  config = require('config')
 }
 
 function luna.init(self)
-  package.path = package.path .. ';' .. config.endpoints .. '/?.lua'
-  for version in lfs.dir(config.endpoints) do
-    moduleDir = config.endpoints .. '/' .. version
+  luna.config.endpoints = luna.config.endpoints or './endpoints'
+  package.path = package.path .. ';' .. luna.config.endpoints .. '/?.lua'
+  for version in lfs.dir(luna.config.endpoints) do
+    moduleDir = luna.config.endpoints .. '/' .. version
     if version ~= '.' and version ~= '..' and lfs.attributes(moduleDir, 'mode') == 'directory' then
       for endpoint in lfs.dir(moduleDir) do
         moduleFile = moduleDir .. '/' .. endpoint
