@@ -1,5 +1,5 @@
 package = "luna"
-version = "0.0.2-0"
+version = "0.1.0-0"
 
 description = {
   summary = "luna api builder",
@@ -9,7 +9,7 @@ description = {
 
 source = {
   url = "git+https://github.com/fnordpipe/luna.git",
-  tag = "v0.0.2",
+  tag = "v0.1.0",
 }
 
 dependencies = {

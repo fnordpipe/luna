@@ -1,10 +1,10 @@
 local test = {}
 
-function test.sayHi(self, params)
+function test.sayHi(self)
   return { status = 200, json = { msg = 'Hi' } }
 end
 
-function test.sayBye(self, params)
+function test.sayBye(self)
   return { status = 200, json = { msg = 'Bye' } }
 end
 

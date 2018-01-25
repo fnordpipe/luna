@@ -22,21 +22,21 @@ function luna.init(self)
           for _, ctx in pairs(blueprint.get or {}) do
             luna.app:get(
               '/' .. version .. '/' .. string.gsub(endpoint, '.lua', '') .. ctx.context,
-              json_params(function(self) return ctx:call(self.params) end)
+              json_params(function(self) return ctx.call(self) end)
             )
           end
 
           for _, ctx in pairs(blueprint.post or {}) do
             luna.app:post(
               '/' .. version .. '/' .. string.gsub(endpoint, '.lua', '') .. ctx.context,
-              json_params(function(self) return ctx:call(self.params) end)
+              json_params(function(self) return ctx.call(self) end)
             )
           end
 
           for _, ctx in pairs(blueprint.delete or {}) do
             luna.app:delete(
               '/' .. version .. '/' .. string.gsub(endpoint, '.lua', '') .. ctx.context,
-              json_params(function(self) return ctx:call(self.params) end)
+              json_params(function(self) return ctx.call(self) end)
             )
           end
         end
