@@ -1,6 +1,7 @@
 # luna
 
-lua api builder
+luna is a wrapper to build api's based on nginx' lua module.
+It provides a lean interface to integrate your custom api endpoints.
 
 ## install
 

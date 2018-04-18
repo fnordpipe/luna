@@ -8,16 +8,10 @@ function test.sayBye(self)
   return { status = 200, json = { msg = 'Bye' } }
 end
 
-test.get = {
-  { context = '', call = test.sayHi }
-}
-
-test.post = {
-  { context = '/hi', call = test.sayHi }
-}
-
-test.delete = {
-  { context = '/bye', call = test.sayBye }
+test.routes = {
+  { context = '', method = 'GET' call = test.sayHi },
+  { context = '/hi', method = 'POST', call = test.sayHi },
+  { context = '/bye', method = 'DELETE', call = test.sayBye }
 }
 
 return test
