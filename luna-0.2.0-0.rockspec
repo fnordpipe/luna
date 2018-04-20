@@ -1,5 +1,5 @@
 package = "luna"
-version = "0.1.0-0"
+version = "0.2.0-0"
 
 description = {
   summary = "luna api builder",
@@ -9,17 +9,17 @@ description = {
 
 source = {
   url = "git+https://github.com/fnordpipe/luna.git",
-  tag = "v0.1.0",
+  tag = "v0.2.0",
 }
 
 dependencies = {
-  "lapis 1.6.0",
+  "lua-cjson",
+  "luafilesystem"
 }
 
 build = {
   type = "builtin",
   modules = {
-    luna = "src/luna.lua",
-    config = "src/config.lua"
+    luna = "src/luna.lua"
   }
 }
